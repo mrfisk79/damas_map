@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Historic Damascus — Map of Key Sites</title>
+<style>
+  :root { font-family: Georgia, 'Times New Roman', serif; color: #2b2118; background: #f4ead8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; display: flex; height: 100vh; overflow: hidden; }
+  #panel {
+    width: 340px; min-width: 300px; padding: 20px; background: #efe3cc;
+    border-right: 1px solid #c9b68f; overflow-y: auto;
+  }
+  #panel h1 { font-size: 20px; margin: 0 0 4px; }
+  #panel .sub { font-size: 12px; color: #6b5a41; margin-bottom: 14px; font-style: italic; }
+  #site-title { font-size: 17px; margin: 0 0 2px; color: #7a3b12; }
+  #site-era { font-size: 12px; color: #8a7658; margin-bottom: 8px; }
+  #site-text { font-size: 13.5px; line-height: 1.55; }
+  .hint { font-size: 12px; color: #6b5a41; margin-top: 14px; border-top: 1px dashed #c9b68f; padding-top: 10px; }
+  #mapwrap { flex: 1; display: flex; align-items: flex-start; justify-content: center; padding: 12px; overflow: auto; }
+  svg { max-width: 100%; }
+  .site { cursor: pointer; }
+  .site circle.pin { fill: #a33d10; stroke: #fff3dd; stroke-width: 2; transition: r .15s; }
+  .site:hover circle.pin, .site.active circle.pin { r: 11; fill: #d4551a; }
+  .site text { font-size: 11.5px; fill: #2b2118; paint-order: stroke; stroke: #f4ead8; stroke-width: 3px; font-family: Georgia, serif; pointer-events: none; }
+  #map-wrap-title { display: none; }
+</style>
+</head>
+<body>
+<aside id="panel">
+  <h1>Damascus 1655</h1>
+  <div class="sub">One of the world's oldest continuously inhabited cities</div>
+  <h2 id="site-title">Click a marker</h2>
+  <div id="site-era"></div>
+  <p id="site-text">Damascus has been inhabited for close to 10,000 years. This map shows the walled City and some of its most important monuments — from the Aramaean and Roman eras through the Umayyad and Ayyubid periods, to the
+    present Ottoman period under Mehmet IV. Select any site to read its story.</p>
+  <div class="hint">Roughly to scale in relative position.</div>
+</aside>
+<main id="mapwrap">
+<svg viewBox="0 0 940 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of historic Damascus">
+  <rect x="0" y="0" width="940" height="700" fill="#f4ead8"/> <!-- area surrounding the city -->
+  <text x="20" y="30" font-size="17" font-weight="bold" fill="#ee0404ff" font-family="Georgia">Old Damascus — Important Sites</text> <!-- text on top of page -->
+  <text x="20" y="48" font-size="12" fill="#8a7658" font-family="Georgia">N↑ · Barada river along the north</text> <!--text below headline -->
+
+  <!-- Barada river (north) -->
+  <path d="M 20,105 C 160,120 300,90 460,110 C 620,130 780,95 920,115" fill="none" stroke="#0c2b4bff" stroke-width="10" opacity="0.55"/>
+  <text x="30" y="98" font-size="11" fill="#4a7395" font-family="Georgia" font-style="italic">Barada River</text>
+
+  <!-- city walls -->
+  <path d="M 150,140 L 730,140 L 840,330 L 800,590 L 350,635 L 175,520 L 130,330 Z"
+        fill="#e7d9ba" stroke="#8a6b3b" stroke-width="5" stroke-linejoin="round"/>
+  <text x="855" y="320" font-size="11" fill="#8a6b3b" font-family="Georgia" font-style="italic">Old City walls</text>
+
+ <!-- citadel -->
+  <path d="M 150,140 L 280,140 L 280,230 L 280,230 L 140,230 Z"
+        fill="#e7d9ba" stroke="#8a6b3b" stroke-width="5" stroke-linejoin="round"/>
+
+  <!-- Straight Street -->
+  <path d="M 165,455 L 830,360" stroke="#b39a6a" stroke-width="8" fill="none" opacity="0.8"/>
+  <text x="480" y="425" font-size="12" fill="#6b5a41" font-family="Georgia" font-style="italic" transform="rotate(-8 480 425)">Straight Street</text>
+
+   <!-- Souq al-Hamidiyah -->
+  <path d="M 265,315 L 380,312" stroke="#a33d10" stroke-width="6" fill="none" opacity="0.7"/>
+  <text x="265" y="308" font-size="11" fill="#7a3b12" font-family="Georgia" font-style="italic" transform="rotate(-1 000 000)">Al-Hamidiyah Souq</text>
+
+  <!-- Roman aqueduct -->
+  <path d="M 2,320 L 100,320" stroke="#48300b" stroke-width="6" fill="none" opacity="0.7"/>
+  <text x="20" y="308" font-size="11" fill="#7a3b12" font-family="Georgia" font-style="italic" transform="rotate(+1 000 000)">Roman Aqueduct</text>
+
+  <!-- Citadel -->
+  <!--<rect x="150" y="140" width="95" height="85" fill="#c9b68f" stroke="#8a6b3b" stroke-width="3"/>-->
+  <!--<text x="180" y="178" font-size="11" fill="#6b5a41" font-family="Georgia">Citadel</text>-->
+
+  <!-- Umayyad Mosque courtyard block -->
+  <rect x="395" y="270" width="100" height="60" fill="#d8c49a" stroke="#7a3b12" stroke-width="3"/>
+
+  <!-- The Janisaar barracks -->
+   <rect x="20" y="260" width="70" height="20" fill="#d8c49a" stroke="#7a3b12" stroke-width="3"/>
+
+  <!-- Azem Palace block -->
+  <rect x="460" y="470" width="50" height="30" fill="#d8c49a" stroke="#8a6b3b" stroke-width="2.5"/>
+  <!--<text x="460" y="466" font-size="11" fill="#6b5a41" font-family="Georgia">Mamluk Palace</text>-->
+
+  <!-- sites injected by script -->
+  <g id="sites"></g>
+</svg>
+</main>
+<script>
+const sites = [
+  { id:"hamidiyah", x:270, y:318, label:"Al-Hamidiyah Souq", title:"Al-Hamidiyah Souq", era:"Roman, 1st–4th c. AD",
+    text:"The largest and most splendid market in Damascus, about 600 m long, but as of 1655 not yet roofed. It is laid out along the ancient Roman ceremonial street that leads to remains of the Temple of Jupiter and remains the beating heart of the city, famous for its silk, sweets, carpets and antiquities." },
+    
+  { id:"jupiter", x:390, y:310, label:"Temple of Jupiter", title:"Temple of Jupiter (remains)", era:"Roman, 1st–4th c. AD (Aramaean site before)",
+    text:"Begun under Augustus and finished under Constantius II, this was one of the largest temples in the Roman world — a vast walled precinct approached through propylaea, with columns over 20 m tall. It was built over an even older Aramaean sanctuary of Hadad-Ramman, the storm god, and later still a Hellenistic temple of Zeus. Under Theodosius I (late 4th c.) the temple became the Church of St. John the Baptist, and the site's sacred continuity continues: the Umayyad Mosque now occupies the precinct, and the Baptist's shrine still stands inside it." },
+
+  { id:"jamal", x:330, y:280, label:"Jamals house", title:"Jamals house", era:"Ottoman, 14th c. AD",
+    text:"The vampire Jamals home. The cellar hides a secret library and office, in addition to cages with chickens (Jamals food)" },
+
+  { id:"janissar", x:45, y:270, label:"The Janissar barracks", title:"Janissar barrack", era:"Ottoman, 14th c. AD",
+    text:"Janissaries began as an elite corps made up through the devşirme system of child levy enslavement, by which Christian boys, chiefly from the Balkans, were taken, levied, subjected to forced circumcision and forced conversion to Islam, and incorporated into the Ottoman army. By 1655 these rules have been eased, and ordinary civilians have started to bolster their ranks." },
+
+  { id:"bulbul", x:300, y:400, label:"House of Bulbul", title:"House of Bulbul", era:"Medieval, 12th c. AD (European architecture)",
+    text:"The House of Bulbul stands in the Hariqa district, a few streets north of the Straight Road. From the outside it resembles a tall, blind-walled caravanserai like a dozen others in Damascus, its façade of worn limestone pierced only by a single great iron-studded gate and a few high windows too small for a cat. What most passersby cannot see from the street is the size of the thing: the wall encloses an entire block, and inside it, around a vast open courtyard, rise two storeys of galleries, storerooms, stabling, a bath, a prayer-room, kitchens and the long whispering hall where the court of the Emir al-Layl holds its nightly business." },
+
+{ id:"bimaristan", x:150, y:340, label:"The Nur al-Din Bimaristan", title:"The Nur al-Din Bimaristan", era:"Zengid, 11th c. AD",
+    text:"Built in 1154 by the Zengid sultan Nur al-Din, this is one of the many hospital of Damascus, standing in the al-Hariqa district near the end of the Bab Al-Jaibyah gate. A two story complex of vaulted wards, with a fountain court behind the main building. It treats the sick freely, rich and poor alike, on the revenues of ancient endowments and alms. The Nosferatu Theopanes hold his mortuary court here, while the the death-teller Qasim haunts its mortuary with his ledger, weighing how the city dies; and in recent weeks the dying have begun vanishing from its wards between the midnight and dawn rounds." },
+
+  { id:"umayyad", x:445, y:288, label:"The Umayyad Mosque", title:"Umayyad Mosque (Jami' al-Umawi)", era:"Umayyad, 706–715 AD",
+    text:"One of the oldest surviving mosques in the world and a masterpiece of early Islamic architecture. Caliph al-Walid I ordered its construction in 706, taking over the site of the Byzantine cathedral — which itself stood on the Temple of Jupiter precinct. Muslim, Christian and Roman layers are all visible: the outer walls and western gate are Roman temple walls, the shrine of St. John the Baptist stands in the prayer hall, and the minaret known as 'Isa's Minaret' is linked by tradition to Jesus's descent at the end of time. Its 4,000 m² of gold mosaic — the 'Barada panel' depicting Paradise as an idealised Damascus — is the greatest surviving mosaic cycle of its age. For centuries it was the model mosque: its layout set the template for congregational mosques across the Islamic world. Saladin is buried just outside its northern wall." },
+
+  { id:"citadel", x:180, y:180, label:"The Citadel", title:"Damascus Citadel (al-Qal'a)", era:"Seljuk origins; Ayyubid & Mamluk, 12th–13th c.",
+    text:"A rectangular fortress wedged into the northwest corner of the walls, defending the junction of the city's main north–west axes. It was a Seljuk stronghold before the Ayyubids — Saladin's line — gave it its present form with massive towers, a rock-cut moat and gates arranged as bent-entrance traps. Mamluk sultans rebuilt its halls and throne rooms, and it later served Ottoman janissaries as barracks. Beside it once stood the palace where Richard the Lionheart is said to have been received during Crusader-era diplomacy. Today it is under long-term restoration — Damascenes still call its enduring 3,300-year-old mound 'the crown of Damascus'." },
+
+  { id:"saladin", x:490, y:225, label:"Saladin's Tomb", title:"Mausoleum of Saladin", era:"Ayyubid, 1193; Otto von Wildberg visited 1194",
+    text:"Sultan Saladin (Salah ad-Din, 1137–1193) took Damascus in 1174, unified Egypt and Syria, and crushed the Crusader army at Hattin before retaking Jerusalem in 1187 — the event that made him the most famous Muslim ruler in European memory as well. He died in Damascus, and his simple domed tomb of pink stone stands in a small garden between the Umayyad Mosque's north wall and the Madrasa al-Aziziyah. In 1898 German Kaiser Wilhelm II visited the grave and was struck that it was so plain; he donated a marble sarcophagus that still sits beside the modest wooden original." },
+
+  { id:"azem", x:480, y:485, label:"Mamluk Palace", title:"Mamluk Palace", era:"Mamluk, 13th c.",
+    text:"The home of the governor of Damascus. Two courtyards — one for official salamlik business, one private haremlik — are set with fountains, orange and lemon trees, and liwan halls open to the breeze. Its walls use the local technique of ablaq masonry, alternating black basalt and pale limestone, and its reception rooms burst with painted wood ceilings and poplar-panelled adornments." },
+
+  { id:"midhat", x:330, y:440, label:"Souq Midhat Pasha", title:"Souq Midhat Pasha (Straight Street West)", era:"Roman street",
+    text:"The western stretch of the street the New Testament calls 'Straight' (Acts 9:11) — the Roman decumanus maximus of Damascus, running arrow-straight from the west gate across the city. It has always been a commercial spine: under Rome, colonnaded shops line it; iand today it have become the Venetians' and other European merchants' quarter; selling textiles, brocade, brass and traditional handicrafts. From here the street continues east, unroofed, to Bab Sharqi." },
+
+  { id:"ananias", x:590, y:430, label:"Chapel of St. Ananias", title:"Chapel of St. Ananias (Hanania)", era:"Byzantine tradition; current chapel 1820s",
+    text:"Two flights of stone steps lead down to a small crypt chapel in the old Christian quarter — a place of worship for well over 1,500 years. It is built on the site identified by tradition as the house of Ananias, the disciple whom God sent to the blinded Saul of Tarsus after his vision on the road to Damascus: 'Arise and go to the street called Straight… for behold, he is praying' (Acts 9:11). From here Christianity spread from a Jewish sect into a world faith, and the house became a church mentioned by pilgrims from at least the 6th century. Five altars, incense-darkened stone and the smell of old wax make it one of the most atmospheric sites in the city." },
+
+  { id:"jewishquarter", x:650, y:500, label:"Jewish District", title:"Jewish District", era:"Byzantine tradition; current chapel 1820s",
+    text:"Jewish dhimmis living in Damascus, while allowed fewer rights than Muslims, are still better off than in Christian most of Europe. Jews from especially the western parts of Europe have during the 17th century increasingly made their way to Damascus, where in parallel to Christian sects regarded as heretical by Catholic Europe, they are not just tolerated, but given opportunities to practice faith and trade  open without restriction save for the prohibitions on proselytization." },
+
+  { id:"wallhouse", x:520, y:545, label:"Old Damascene houses", title:"Courtyard Houses of the Old City", era:"Mostly 15th–16th c.",
+    text:"The quarters south of the mosque preserve hundreds of traditional Damascene courtyard houses — Beit Nizam, Beit Aqqad, Beit Farhi and many others. Their design answers the desert-edge climate: blank walls on the street, then an inward-looking world of a marble-paved courtyard with a central fountain, citrus trees, and a raised liwan open on three sides for summer. Winter rooms sit opposite, with qamariyah stained-glass windows throwing coloured light across painted wood ceilings. Many Jewish, Christian and Muslim families shared these alleys for centuries; several houses are now restored as museums, boutique hotels and cultural institutes." },
+
+  { id:"ollivegroves", x:520, y:645, label:"The Olive Groves", title:"The Olive Groves and gardens", era:"",
+    text:"South of the city a large area of lush olive groves and gardens stretches out across the relative flat area. They are kept fertile by the extensive network of irrigation channels from the river, as well as the many underground gaverns (the qanat system) leading into and under the city from the Anti Lebanon mountains." },    
+
+  { id:"sayyidahruqayya", x:585, y:255, label:"Sayyidah Ruqayya", title:"Sayyidah Ruqayya Shrine", era:"Fatimid-era",
+    text:"A shrine-mosque honouring Ruqayya, the young daughter of Imam Husayn, who was brought to Damascus as a captive after the tragedy of Karbala in 680 AD and died here in captivity. The site became a major pilgrimage destination for Shia and especially Iranian pilgrims, and the present prayer hall, financed by Iranian patrons, is a dazzling cavity of mirror mosaic — every wall and vault a kaleidoscope of cut-glass geometry around a jewel-encrusted silver zarih (tomb enclosure). Along with Sayyidah Zaynab's shrine outside the city, it has made Damascus a second centre of Shia pilgrimage after Najaf and Karbala." },
+
+  { id:"christianquarter", x:620, y:200, label:"Christian District", title:"Christian District", era:"Fatimid-era",
+    text:"In the Ottoman Empire, in accordance with the dhimmi system implemented in Muslim countries, they, like all other Christians and also Jews, were accorded certain freedoms. The dhimmi system in the Ottoman Empire was largely based upon the Pact of Umar. The client status established the rights of the non-Muslims to property, livelihood and freedom of worship but they were in essence treated as second-class citizens" },    
+
+  { id:"tekkiye", x:400, y:80, label:"Tekkiye Mosque", title:"Tekkiye Mosque & Khan As'ad Pasha", era:"Ottoman, 1554",
+    text:"Just north of the walls, the great Ottoman architect Mimar Sinan designed the Tekkiye Mosque (1554) for Suleiman the Magnificent — a spare, elegant ensemble of a slim minaret, a prayer hall under a cascade of domes, and a sprawling courtyard that once served as a hostel dervish lodge." },
+
+  { id:"subburb1", x:200, y:60, label:"Northern subburbs", title:"Northern subburbs", era:"Ottoman",
+    text:"North-east of the citadel across from the river, a growing subburb have started to appear during the Ottoman period. The houses are smaller, often only one or two floors, and simpler than the ones within the city." },
+
+  { id:"babsharqi", x:830, y:360, label:"Bab Sharqi", title:"Bab Sharqi (Gate of the Sun)", era:"Roman, 1st c. AD; rebuilt 13th–16th c.",
+    text:"The eastern gate of Roman Damascus, dedicated to the Sun and aligned so the rising sun shines straight down the decumanus. It retains its monumental Roman central arch — the most intact piece of Roman city architecture in Damascus — flanked by a minaret and a church bell tower, a perfect image of the city's layered history. It was through a window in this wall, according to Acts 9:25, that St. Paul was lowered in a basket to escape the governor's patrols." },
+
+  { id:"babtouma", x:740, y:160, label:"Bab Tuma", title:"Bab Touma (Gate of Thomas)", era:"Roman origins; present gate 13th–16th c.",
+    text:"The northeast gate, associated by tradition with Thomas the Apostle, who is said to have preached in Damascus. Rebuilt in the 13th century and crowned with its distinctive square tower in the 16th, it opens into the Bab Touma quarter — the heart of the Christian Old City, all winding alleys, jasmine, old houses with painted doorways, and the church of St. Sarkis. The gate's crooked street plan still follows the market routes of ancient Damascus, rebuilt after the Mongol destruction of 1400." },
+
+ { id:"cemetery1", x:780, y:180, label:"Cemetery (east)", title:"Cemetery (east)", era:"",
+    text:"Beyond the Bab Touma gate there is a large cemetery which in turns leads up to olive groves and farmland" },    
+
+  { id:"babkisan", x:640, y:605, label:"Bab Kisan / St. Paul", title:"Bab Kisan & Chapel of St. Paul", era:"Roman gate; chapel Byzantine in origin",
+    text:"The southeast gate of the Roman city, dedicated in the old Damascene planetary scheme to Saturn. It was famously breached in 635 AD during the Muslim conquest of Damascus by Khalid ibn al-Walid's force, which then swept to the Umayyad Mosque area to join the other Muslim columns — the gate became a symbol of the city's capture. By tradition this is where the disciples lowered St. Paul over the wall in a basket to escape 'the governor under Aretas the king' (2 Corinthians 11:32). The chapel inside the gateway, with its 16th-century doorway, and the nearby Greek Melkite church of St. Paul, keep the memory of the escape alive." },
+
+  { id:"cemetery2", x:690, y:635, label:"Cemetery (south)", title:"Cemetery (south)", era:"",
+    text:"Immediately beyond the Bab Kisan gate a large area of lush gardens and olive groves stretches out. Beyond the garden you'll find the wasteground, before giving way to a smaller cemetery reserved for christian burrials. As with the muslim cemetery to the east, there are olive groves and farmland beyond the cemetery" },
+
+  { id:"babjabiyah", x:160, y:455, label:"Bab al-Jabiyah", title:"Bab al-Jabiyah (Gate of Mars)", era:"Roman, 1st c. AD; rebuilt Mamluk era",
+    text:"The western gate of Roman Damascus, dedicated to the planet Mars, and the western terminus of Straight Street — the point where the decumanus met the wall on the road to the coast. It takes its current name from al-Jabiya, the early-Muslim assembly spot used by the Arab conquerors who entered the city in 635, where mosque and the first Muslim administrative structures were set. Rebuilt in stone by the Mamluks, it now anchors the beginning of Souq Midhat Pasha and marks the entry to the Old City's western half." },
+
+  { id:"babsaghir", x:350, y:630, label:"Bab al-Saghir", title:"Bab al-Saghir (Small Gate) & Cemetery", era:"Roman-era south gate; shrines 12th c.+",
+    text:"The 'Small Gate' pierces the southern wall and opens onto one of the most resonant streets in Islam: the Bab al-Saghir cemetery, where many of the Prophet Muhammad's family are buried — including several of the Ahl al-Bayt, such as Umm Kulthum and the children of Husayn after Karbala. Pilgrims from Iran, Iraq, Afghanistan and beyond stream through its shrine doors. It was the gate through which Muslim forces under Amr ibn al-A'as entered Damascus during the conquest of 635. Its stone lintels still bear Roman-era spolia — reused ancient blocks." },
+
+  { id:"subburb2", x:260, y:670, label:"Southern subburbs", title:"Southern subburbs", era:"12th-13th c.",
+    text:"South of the city you'll the largest subburb surrounding Damascus. A few thousand people reside here, the number significantly varies according to the ebb and flow of travellers. The buildings here are older and there are more enclosed courtyards and mosques here. During the Hajj, both the northern and southern subburds swell with visitors prepearing to make the journey south" },
+
+  { id:"babfaradis", x:300, y:140, label:"Bab al-Faradis", title:"Bab al-Faradis (Gate of Paradise)", era:"Roman origins; rebuilt 13th c.",
+    text:"The northwest gate, dedicated in the Roman planetary scheme to Mercury. Its Arabic name, 'Gate of Paradise' or 'Gate of the Orchards', reflects the gardens and water channels that once surrounded it — this was the road out towards the verduous Ghouta oasis and the river-fed orchards that made Damascus proverbial for its fruit. Rebuilt in the medieval period, it is quieter than the great market gates but one of the best places to feel the scale of the ancient walls." },
+
+  { id:"babsalam", x:500, y:140, label:"Bab al-Salam", title:"Bab al-Salam (Gate of Peace)", era:"Roman origins; rebuilt 13th c.",
+    text:"The 'Gate of Peace' cuts through the northern wall — the Roman gate dedicated to the Moon — and for much of the city's history was the main northern entrance, the road to Homs and Aleppo. Mamluk-era rebuilding gave it a bent entrance for defence, and it still funnels traffic from the northern suburbs into the alleys around the Khayyatin and Asrouneyeh markets. Nearby stands the Tekkiye Mosque complex built by Suleiman the Magnificent in 1554, beside the city's old craft quarters." },
+
+
+];
+const g = document.getElementById("sites");
+const titleEl = document.getElementById("site-title");
+const eraEl = document.getElementById("site-era");
+const textEl = document.getElementById("site-text");
+let active = null;
+sites.forEach(s => {
+  const grp = document.createElementNS("http://www.w3.org/2000/svg","g");
+  grp.setAttribute("class","site");
+  grp.innerHTML = `<circle class="pin" cx="${s.x}" cy="${s.y}" r="7"/>
+    <text x="${s.x+11}" y="${s.y+4}">${s.label}</text>`;
+  grp.addEventListener("click", () => {
+    if (active) active.classList.remove("active");
+    grp.classList.add("active"); active = grp;
+    titleEl.textContent = s.title;
+    eraEl.textContent = s.era;
+    textEl.textContent = s.text;
+  });
+  g.appendChild(grp);
+});
+</script>
+</body>
+</html>
